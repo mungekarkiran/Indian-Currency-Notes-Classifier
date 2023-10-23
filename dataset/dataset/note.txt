@@ -1,0 +1,19 @@
+Train
+
+FiftyNote               0           111
+FiveHundredNote         1           101
+OneHundredNote          2           51
+TenNote                 3           92
+TwentyNote              4           116
+TwoHundredNote          5           52
+
+Test
+
+FiftyNote               0           6
+FiveHundredNote         1           6
+OneHundredNote          2           6
+TenNote                 3           6
+TwentyNote              4           6
+TwoHundredNote          5           6
+
+https://colab.research.google.com/drive/1xU9cV9ioUQRQ6XueCTS-ZYnDu8r0er2q#scrollTo=YfPy18s_aQBd
