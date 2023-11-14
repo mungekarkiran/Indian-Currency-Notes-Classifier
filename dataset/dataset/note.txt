@@ -17,3 +17,21 @@ TwentyNote              4           6
 TwoHundredNote          5           6
 
 https://colab.research.google.com/drive/1xU9cV9ioUQRQ6XueCTS-ZYnDu8r0er2q#scrollTo=YfPy18s_aQBd
+
+
+@ 14/11/2023
+dataset link : 2.3GB
+https://www.kaggle.com/datasets/vishalmane109/indian-currency-note-images-dataset-2020
+https://vishalmanes109.github.io/Indian-Currency-recognizer/src/index.html
+https://www.youtube.com/watch?v=CTQaOSVYpn8
+https://www.kaggle.com/datasets/vishalmane109/indian-currency-note-resnet-weights
+
+https://github.com/vishalmanes109/Indian-Currency-recognizer/blob/master/Indian%20Currency%20recognizer%20model/Training%20and%20validation%20pahse.ipynb
+
+https://github.com/vishalmanes109?tab=overview&from=2018-12-01&to=2018-12-31
+
+
+https://www.youtube.com/watch?v=ZWm3CQW1g5o
+https://takeoffprojects.com/embedded-systems-mini-projects
+https://www.youtube.com/watch?v=tYqGyag4mT8
+https://www.youtube.com/watch?v=ceZrjY1cz8E
