@@ -1,0 +1,51 @@
+{% extends "base1_loginpage.html" %}
+{% block content %}
+
+<!-- https://source.unsplash.com/720x600/?paper,pen -->
+<!-- https://source.unsplash.com/1080x720/?job,work,happy -->
+
+
+<!-- main body -->
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <h3>Login</h3>
+            <form action="/mylogin" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="email" placeholder="Your Email *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Your Password *"
+                        value="" />
+                </div>
+                <center>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </center>
+            </form>
+        </div>
+
+        <div class="col-md-6 login-form-2">
+            <h3>Registration</h3>
+            <form action="/myreg" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="email" placeholder="Your Email *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Your Password *"
+                        value="" />
+                </div>
+                <center>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </center>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

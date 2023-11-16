@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- https://source.unsplash.com/720x600/?paper,pen -->
+<!-- https://source.unsplash.com/1080x720/?job,work,happy -->
+
+
+<!-- main body -->
+<br>
+<div class="container border border-dark rounded p-2">
+    <h1 class="text-center"><u>Indian Institute Of Technology (I.I.T.)</u></h1>
+    <h2 class="text-center"><u>Your ID Card</u></h2>
+    <div class="row">
+        <div class="col-md-1 login-form-1"></div>
+        <div class="col-md-4 m-1 login-form-1 border border-dark float-center">
+            <h4 class="text-center"><u>Student ID with QR-Code</u></h4>
+            <img src="{{ photo_path }}" alt="Student Photo" height="150px" width="150px" class="m-1 rounded-circle mx-auto d-block">
+            <h5 class="text-center">{{data_dict['name']}}</h5>
+            <p class="text-center">{{data_dict['class']}} - {{data_dict['division']}}</p>
+            <hr>
+            <img src="{{ url_for('static', filename='qr_codes/id_card.png') }}" alt="QR Code ID Card" height="250px"
+                width="250px" class="m-1 rounded mx-auto d-block ">
+                <h5 class="text-center">{{data_dict['roll_num']}}</h5>
+            <br>
+            
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4 m-1 login-form-2 border border-dark float-center">
+            <h4 class="text-center"><u>Student ID with QR-Code</u></h4>
+            
+            <hr>
+            <img src="{{ photo_path }}" alt="Student Photo" height="150px" width="150px" class="m-1 rounded-circle mx-auto d-block">
+            <hr>
+            <h6>ID :</h6> {{data_dict['roll_num']}}
+            <h6>Student Name :</h6> {{data_dict['name']}}
+            <h6>Student Class :</h6> {{data_dict['class']}}
+            <h6>Student Division :</h6> {{data_dict['division']}}
+            <hr>
+            <h4 class="text-center"><u>Indian Institute Of Technology</u></h4>
+            <p class="text-center">Main Gate Rd, IIT Area, Powai, Mumbai, Maharashtra 400076</p>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <!-- <h1>Your ID Card</h1>
+    <img src="{{ url_for('static', filename='qr_codes/id_card.png') }}" alt="QR Code ID Card" height="250px" width="250px">
+    <br>
+    <div>
+        <h3>ID : {{data_dict['roll_num']}}</h3>
+        <h3>Student Name : {{data_dict['name']}}</h3>
+        <h3>Student Class : {{data_dict['class']}}</h3>
+        <h3>Student Division : {{data_dict['division']}}</h3>
+        <img src="{{ photo_path }}" alt="Student Photo" height="150px" width="150px">
+    </div> -->
+</div>
+
+<button class="btn btn-primary float-right" onclick="window.print()">Print</button>
+<br><br><br>
+
+{% endblock %}

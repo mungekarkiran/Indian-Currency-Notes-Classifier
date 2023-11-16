@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center>
+    <div class="container">
+        <h1>Resume Classification</h1>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <form action="/jobtitle" method="post" enctype="multipart/form-data">
+                    <p>Upload your resume in (.pdf) formate :</p>
+                    <input type="file" name="file" class="file">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <br>
+
+        {% if flag %}
+        <div class="row">
+            <div class="col-6">
+                <h2>Role Score</h2>
+                <br>
+                <div id="chart1" class="chart"></div>
+            </div>
+            <div class="col-6">
+                <h2>Job Title</h2>
+                <br>
+                Your resume is match for <strong style="text-decoration-line: underline; text-decoration-style: wavy; text-decoration-color: red;">" {{ rds }} "</strong> position with <strong style="text-decoration-line: underline; text-decoration-style: wavy; text-decoration-color: red;">{{ max_li }}%</strong> score. 
+                
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+    </div>
+
+</center>
+
+{% endblock %}

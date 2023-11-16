@@ -1,0 +1,66 @@
+{% extends "base2_homepage.html" %}
+{% block content %}
+
+<!-- https://source.unsplash.com/720x600/?paper,pen -->
+<!-- https://source.unsplash.com/1080x720/?job,work,happy -->
+
+
+<!-- main body -->
+<br><br>
+<!-- <center>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ url_for('static', filename='style/img/generate_qr_code.png' ) }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Generate QR ID</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, assumenda.</p>
+                    <a href="/generate_id" class="btn btn-primary">Visit me</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ url_for('static', filename='style/img/scan_qr_code.png' ) }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Scan QR ID</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, voluptates</p>
+                    <a href="/scan_id" class="btn btn-primary">Visit me</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</center> -->
+
+
+<div class="container pt-4 pb-5">
+    <div class="row justify-content-between">
+        <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5 text-center">
+            <div id="image">
+                <img src="{{url_for('static', filename='frontend/images/placeholder.jpg')}}" class="z-depth-2 img-fluid rounded" alt="placeholder">
+            </div>
+            <h2 class="mt-4">Select an image to upload</h2>
+            <form action="" id="upload-file" class="md-form" method="post" enctype="multipart/form-data">
+                
+                <div class="file-field medium btn-group" role="group">
+                    <input id="file-upload" type="file" name="file" autocomplete="off" required />
+                    <img src="{{url_for('static', filename='frontend/images/placeholder.jpg')}}" />
+                </div>
+
+                <div class="mt-4">
+                    <button id="upload-file-btn" class="btn btn-success btn-lg btn-rounded" type="button"><i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i> Upload</button>
+                </div>
+                
+                <div id="overlay"></div>
+            </form>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center">
+            <div id="chart"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

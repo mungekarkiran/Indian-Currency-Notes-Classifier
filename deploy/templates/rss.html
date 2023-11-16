@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center>
+    <div class="container">
+        <h1>Resume Similarity System</h1>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <form action="/resumesimilaritysystem" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Upload your resume in (.pdf) formate :</label>
+                        <input type="file" name="file" class="file">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Enter job description</label>
+                        <br>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="job_decription" rows="10"></textarea>
+                      </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</center>
+
+
+
+
+
+{% endblock %}
