@@ -109,3 +109,94 @@ data-toggle="tooltip" data-placement="bottom" title="Camera">
 style="display: none;" data-toggle="tooltip" data-placement="bottom" title="Cancel">
 <i class='fas fa-times' aria-hidden='true'></i>
 </a>
+
+
+
+
+
+
+
+
+
+
+
+<hr><hr>
+
+<div class="container pt-4 pb-5">
+    <div class="row justify-content-between">
+        <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5 text-center">
+            <div id="image">
+                <img src="{{url_for('static', filename='style/img/placeholder.jpg')}}"
+                    class="z-depth-2 img-fluid rounded" alt="placeholder">
+            </div>
+            <h2 class="mt-4">Select an image to upload</h2>
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form action="" class="md-form" method="post" enctype="multipart/form-data">
+
+                            <div class="file-field medium btn-group" role="group">
+                                <label for="imageInput">
+                                    <img id="fileIcon" src="{{url_for('static', filename='style/img/link.png')}}"
+                                        alt="File Icon" class="rounded-circle border border-primary" height="50"
+                                        width="50">
+                                </label>
+                                <input type="file" id="imageInput" accept="image/* required">
+                                <!-- <input id="file-upload" type="file" name="photo" autocomplete="off" required /> -->
+                            </div>
+
+                            <div class="mt-4">
+                                <button id="upload-file-btn" class="btn btn-success btn-lg btn-rounded" type="button">
+                                    <!-- <i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i> -->
+                                    <img src="{{url_for('static', filename='style/img/upload-file.png')}}"
+                                        alt="Button Image" height="20" width="20">
+                                    Upload
+                                </button>
+                            </div>
+                            <!-- <div id="overlay"></div> -->
+                        </form>
+                    </div>
+                    <div class="col">
+                        <a class="btn" href="/home" role="button">
+                            <img id="cameraIcon" src="{{url_for('static', filename='style/img/camera.png')}}"
+                                alt="File Icon" class="rounded-circle border border-primary" height="50" width="50">
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- <form action="" class="md-form" method="post" enctype="multipart/form-data">
+
+                <div class="file-field medium btn-group" role="group">
+                    <label for="imageInput">
+                        <img id="fileIcon" src="{{url_for('static', filename='style/img/link.png')}}" alt="File Icon"
+                            class="rounded-circle border border-primary" height="50" width="50">
+                    </label>
+                    <input type="file" id="imageInput" accept="image/*">
+                </div>
+
+                <div class="mt-4">
+                    <button id="upload-file-btn" class="btn btn-success btn-lg btn-rounded" type="button">
+                        <i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i>
+                        <img src="{{url_for('static', filename='style/img/upload-file.png')}}" alt="Button Image"
+                            height="20" width="20">
+                        Upload
+                    </button>
+                </div>
+
+                <a class="btn" href="/home" role="button">
+                    <img id="fileIcon" src="{{url_for('static', filename='style/img/camera.png')}}" alt="File Icon"
+                        class="rounded-circle border border-primary" height="50" width="50">
+                </a>
+
+                <div id="overlay"></div>
+            </form> -->
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center">
+            <div id="chart"></div>
+        </div>
+    </div>
+</div>

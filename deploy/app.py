@@ -69,26 +69,9 @@ def myreg():
             print('Reg. Exception : ',e,'\n')
             return render_template('index.html')
 
-@app.route('/generate_id', methods=['GET', 'POST'])
-def generate_id():
+@app.route('/predict_by_image', methods=['GET', 'POST'])
+def predict_by_image():
     if request.method == "POST":
-        roll_num = request.form.get("roll_num")
-        name = request.form.get("name")
-        stud_class = request.form.get("class")
-        stud_division = request.form.get("division")
-
-        data_dict = {
-            'roll_num': roll_num,
-            'name': name,
-            'class': stud_class,
-            'division': stud_division
-        }
-        # Convert the dictionary to a string
-        data_string = str(data_dict)
-
-        # Check if the 'file' input field is empty
-        if 'photo' not in request.files:
-            return 'No file part'
         photo = request.files["photo"]
 
         # Check if the file is empty
@@ -108,21 +91,21 @@ def generate_id():
         # Save the photo and generate a QR code
         # photo_path = os.path.join("photos", photo.filename)
         # photo.save(photo_path)
-        qr = qrcode.QRCode(
-            version=1,
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
-            box_size=10,
-            border=4,
-        )
-        qr.add_data(data_string)
-        qr.make(fit=True)
-        qr_img = qr.make_image(fill_color="black", back_color="white")
-        qr_path = os.path.join(app.config['QR_FOLDER'], 'id_card.png')
-        qr_img.save(qr_path)
-
+        # qr = qrcode.QRCode(
+        #     version=1,
+        #     error_correction=qrcode.constants.ERROR_CORRECT_L,
+        #     box_size=10,
+        #     border=4,
+        # )
+        # qr.add_data(data_string)
+        # qr.make(fit=True)
+        # qr_img = qr.make_image(fill_color="black", back_color="white")
+        # qr_path = os.path.join(app.config['QR_FOLDER'], 'id_card.png')
+        # qr_img.save(qr_path)
+        
         # return redirect(url_for("generate_id"))
-        return render_template("id_card.html", data_dict=data_dict, photo_path=photo_path)
-    return render_template("generate_id.html")
+        return render_template("home.html", flag=True, photo_path=photo_path)
+    return render_template("generate_id.html", flag=False)
 
 # Flask route to display the stored QR code data
 @app.route('/scan_id')

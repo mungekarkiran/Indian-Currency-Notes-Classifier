@@ -3,7 +3,7 @@
 
 <!-- https://source.unsplash.com/720x600/?paper,pen -->
 <!-- https://source.unsplash.com/1080x720/?job,work,happy -->
-
+<!-- https://www.flaticon.com/ -->
 
 <!-- main body -->
 <br><br>
@@ -35,32 +35,61 @@
 </div>
 </center> -->
 
-
-<div class="container pt-4 pb-5">
-    <div class="row justify-content-between">
-        <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5 text-center">
+<div class="container">
+    <div class="row">
+        <div class="col">
             <div id="image">
-                <img src="{{url_for('static', filename='frontend/images/placeholder.jpg')}}" class="z-depth-2 img-fluid rounded" alt="placeholder">
+                <img src="{{url_for('static', filename='style/img/placeholder.jpg')}}" class="z-depth-2 img-fluid rounded" alt="placeholder">
             </div>
             <h2 class="mt-4">Select an image to upload</h2>
-            <form action="" id="upload-file" class="md-form" method="post" enctype="multipart/form-data">
-                
-                <div class="file-field medium btn-group" role="group">
-                    <input id="file-upload" type="file" name="file" autocomplete="off" required />
-                    <img src="{{url_for('static', filename='frontend/images/placeholder.jpg')}}" />
-                </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form action="/predict_by_image" class="md-form" method="post" enctype="multipart/form-data">
 
-                <div class="mt-4">
-                    <button id="upload-file-btn" class="btn btn-success btn-lg btn-rounded" type="button"><i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i> Upload</button>
+                            <div class="file-field medium btn-group" role="group">
+                                <label for="imageInput">
+                                    <img id="fileIcon" src="{{url_for('static', filename='style/img/link.png')}}"
+                                        alt="File Icon" class="rounded-circle border border-primary" height="50"
+                                        width="50">
+                                    <input type="file" name="photo" id="imageInput" accept="image/* required">
+                                </label>
+                                
+                                <!-- <input id="file-upload" type="file" name="photo" autocomplete="off" required /> -->
+                            </div>
+
+                            <div class="mt-4">
+                                <button id="upload-file-btn" class="btn btn-success btn-lg btn-rounded" type="button">
+                                    <!-- <i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i> -->
+                                    <img src="{{url_for('static', filename='style/img/upload-file.png')}}"
+                                        alt="Button Image" height="20" width="20">
+                                    Upload
+                                </button>
+                            </div>
+                            <!-- <div id="overlay"></div> -->
+                        </form>
+                    </div>
+                    <div class="col-6">
+                        <a class="btn" href="/home" role="button">
+                            <img id="cameraIcon" src="{{url_for('static', filename='style/img/camera.png')}}"
+                                alt="File Icon" class="rounded-circle border border-primary" height="50" width="50">
+                        </a>
+                    </div>
                 </div>
-                
-                <div id="overlay"></div>
-            </form>
+            </div>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center">
-            <div id="chart"></div>
+        <div class="col-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center">
+                <div id="chart">Hello</div>
+                {% if flag %}
+                {{ photo_path }}
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
+
+
+
 
 {% endblock %}

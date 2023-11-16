@@ -1,0 +1,39 @@
+
+input[type="file"] {
+    display: none;
+}
+
+label {
+    /* background-color: rgb(255, 255, 255); */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    /* border: none; */
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#fileIcon {
+    vertical-align: middle;
+    /* margin-right: 10px; */
+    margin: 5px;
+}
+
+
+#cameraIcon {
+    margin-top: 20px;
+}
+
+img {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+form {
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    /* border: 1px solid #ccc; */
+    border-radius: 8px;
+}

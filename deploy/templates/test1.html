@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button with Image and File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        form {
+            display: inline-block;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        #fileIcon {
+            vertical-align: middle;
+            /* margin-right: 10px; */
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <form>
+        <h2>Submit the Form</h2>
+        <p>Fill out the form and click the button:</p>
+
+        <!-- Your form fields go here -->
+
+        <label for="imageInput">
+            <img id="fileIcon" src="..\static\style\img\my_logo.png" alt="File Icon" height="20" width="20"> 
+        </label>
+        <input type="file" id="imageInput" accept="image/*">
+
+        <button type="submit">
+            <img src="..\static\style\img\my_logo.png" alt="Button Image" height="20" width="20"> 
+        </button>
+    </form>
+
+</body>
+</html>
