@@ -8,6 +8,7 @@ import datetime
 from werkzeug.utils import secure_filename
 from currency_predict import prediction
 import pyttsx3
+import uuid
 
 # variable's
 connection = sqlite3.connect('Indian_Currency.db', timeout=1, check_same_thread=False)
@@ -29,6 +30,22 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+
+# Initialize the webcam capture object
+cap = cv2.VideoCapture(0)
+
+def generate_frames():
+    while True:
+        success, frame = cap.read()
+        if not success:
+            break
+        else:
+            ret, buffer = cv2.imencode('.jpg', frame)
+            if not ret:
+                continue
+            frame = buffer.tobytes()
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 # routing
 @app.route('/')
@@ -111,17 +128,58 @@ def predict_by_image():
     return render_template("home.html", flag=False)
 
 # Flask route to display the stored QR code data
-@app.route('/scan_id')
-def display_qr_codes():
-    conn = sqlite3.connect('qr_codes.db')
-    qr_cursor = conn.cursor()
-    qr_cursor.execute('SELECT * FROM qr_codes')
-    qr_codes = qr_cursor.fetchall()
-    conn.close()
+@app.route('/predict_by_video')
+def predict_by_video():
+    return render_template('predict_by_video.html')
 
-    return render_template('scan_id.html', qr_codes=qr_codes)
+@app.route('/capture', methods=['POST'])
+def capture():
+    if request.method == "POST":
+        # Check if the 'file' input field is empty
+        if 'image' not in request.files:
+            return 'No file part'
+        
+        photo = request.files['image']
+
+        # Check if the file is empty
+        if photo.filename == '':
+            return 'No selected file'
+
+        # Check if the file has an allowed extension (e.g., only allow image files)
+        allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
+        if '.' in photo.filename and photo.filename.rsplit('.', 1)[1].lower() in allowed_extensions:
+            # Generate a unique filename using UUID
+            photo_path = os.path.join(app.config['UPLOAD_FOLDER'], f'{str(uuid.uuid4())}.jpg')
+            
+            # Save the image to the file
+            photo.save(photo_path)
+        else:
+            return 'Invalid file format'
+
+        class_label, class_likelihood, plot_data, mytext = prediction(photo_path)
+
+        # Initialize the text-to-speech engine
+        engine = pyttsx3.init()
+
+        # Speak the mytext
+        engine.say(mytext)
+
+        # Wait for the speech to finish
+        engine.runAndWait()
+        
+        # return redirect(url_for("home", flag=False))
+        # return redirect(url_for("home", flag=True, photo_path=photo_path, class_label=class_label, class_likelihood=class_likelihood, plot_data=plot_data, mytext=mytext))
+        # return render_template("home.html", flag=True, photo_path=photo_path, class_label=class_label, class_likelihood=class_likelihood, plot_data=plot_data, mytext=mytext)
+    # return render_template('predict_by_video.html')
+
+    #     return f'Image captured and saved as {filename}'
+    # else:
+    #     return 'Failed to capture an image'
 
 if __name__ == '__main__':
+    # if not os.path.exists('captured_images'):
+    #     os.makedirs('captured_images')
+
     # Run the Flask app
     app.run(debug=True) #debug=True
     # app.run(debug=False,host='0.0.0.0', port=5000)

@@ -71,6 +71,62 @@
 		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 		crossorigin="anonymous"></script>
 
+
+
+	
+	<script>
+		const video = document.getElementById('video');
+		const captureButton = document.getElementById('captureButton');
+		const canvas = document.createElement('canvas');
+		const context = canvas.getContext('2d');
+		
+		captureButton.addEventListener('click', () => {
+			canvas.width = video.videoWidth;
+			canvas.height = video.videoHeight;
+			context.drawImage(video, 0, 0, canvas.width, canvas.height);
+			
+			const imageBlob = dataURLToBlob(canvas.toDataURL('image/jpeg'));
+			const formData = new FormData();
+			formData.append('image', imageBlob, 'captured_image.jpg');
+			
+			fetch('/capture', {
+				method: 'POST',
+				body: formData,
+			});
+			// .then(response => response.text())
+			// .then(result => {
+			//     // alert(result);
+			//     console.log(result);
+			// });
+
+			// location.replace("/home");
+		});
+	
+		async function startCamera() {
+			try {
+				const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+				video.srcObject = stream;
+			} catch (error) {
+				console.error('Error accessing the webcam: ', error);
+			}
+		}
+	
+		startCamera();
+	
+		function dataURLToBlob(dataURL) {
+			const byteString = atob(dataURL.split(',')[1]);
+			const mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+			const ab = new ArrayBuffer(byteString.length);
+			const ia = new Uint8Array(ab);
+			for (let i = 0; i < byteString.length; i++) {
+				ia[i] = byteString.charCodeAt(i);
+			}
+			return new Blob([ab], { type: mimeString });
+		}
+
+		
+	</script>
+
 </body>
 
 </html>

@@ -1,0 +1,28 @@
+{% extends "base2_homepage.html" %}
+{% block content %}
+
+<!-- https://source.unsplash.com/720x600/?paper,pen -->
+<!-- https://source.unsplash.com/1080x720/?job,work,happy -->
+<!-- https://www.flaticon.com/ -->
+
+<!-- main body -->
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div id="image">
+                <video id="video" width="480" height="240" autoplay></video>
+                <input type="file" name="image" accept="image/*">
+            </div>
+            <h2 class="mt-4">Capture an image to upload</h2>
+            <div class="mt-4">
+                <button id="captureButton" class="btn btn-success btn-lg btn-rounded" type="submit">
+                    <img src="{{url_for('static', filename='style/img/upload-file.png')}}" alt="Button Image"height="20" width="20"> Upload
+                </button>
+            </div>
+        </div>
+        <div class="col-6"></div>
+    </div>
+</div>
+
+{% endblock %}

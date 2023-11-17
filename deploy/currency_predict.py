@@ -68,6 +68,6 @@ def prediction(file_name):
 
     # Print the result
     # print(file_name)
-    print("This is image is a {} - Likelihood: {:2f}".format(class_label, class_likelihood))
+    # print("This is image is a {} - Likelihood: {:2f}".format(class_label, class_likelihood))
 
     return (class_label, class_likelihood, plot_data, mytext) 
