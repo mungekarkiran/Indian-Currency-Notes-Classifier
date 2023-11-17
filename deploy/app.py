@@ -6,6 +6,8 @@ import os
 import cv2
 import datetime
 from werkzeug.utils import secure_filename
+from currency_predict import prediction
+import pyttsx3
 
 # variable's
 connection = sqlite3.connect('Indian_Currency.db', timeout=1, check_same_thread=False)
@@ -45,12 +47,13 @@ def mylogin():
 
         cursor.execute(f'''SELECT * FROM idpass WHERE email = "{email}" AND pass = "{password}"; ''')
         connection.commit()
-        time.sleep(0.5)
+        time.sleep(0.3)
         result = cursor.fetchall()
-        print('result : ', result)
+        # print('result : ', result)
 
         if len(result) > 0:
             return render_template('home.html')
+            # return redirect(url_for("home", flag=False))
         else:
             return '<b>Wrong email, password!</b>'
 
@@ -72,7 +75,11 @@ def myreg():
 @app.route('/predict_by_image', methods=['GET', 'POST'])
 def predict_by_image():
     if request.method == "POST":
-        photo = request.files["photo"]
+        # Check if the 'file' input field is empty
+        if 'image' not in request.files:
+            return 'No file part'
+        
+        photo = request.files["image"]
 
         # Check if the file is empty
         if photo.filename == '':
@@ -84,28 +91,24 @@ def predict_by_image():
             # Save the file to the specified folder
             photo_path = os.path.join(app.config['UPLOAD_FOLDER'], photo.filename)
             photo.save(photo_path)
-            # return 'File uploaded successfully'
+            # print(f"{photo_path} File uploaded successfully")
         else:
             return 'Invalid file format'
         
-        # Save the photo and generate a QR code
-        # photo_path = os.path.join("photos", photo.filename)
-        # photo.save(photo_path)
-        # qr = qrcode.QRCode(
-        #     version=1,
-        #     error_correction=qrcode.constants.ERROR_CORRECT_L,
-        #     box_size=10,
-        #     border=4,
-        # )
-        # qr.add_data(data_string)
-        # qr.make(fit=True)
-        # qr_img = qr.make_image(fill_color="black", back_color="white")
-        # qr_path = os.path.join(app.config['QR_FOLDER'], 'id_card.png')
-        # qr_img.save(qr_path)
+        class_label, class_likelihood, plot_data, mytext = prediction(photo_path)
+
+        # Initialize the text-to-speech engine
+        engine = pyttsx3.init()
+
+        # Speak the mytext
+        engine.say(mytext)
+
+        # Wait for the speech to finish
+        engine.runAndWait()
         
         # return redirect(url_for("generate_id"))
-        return render_template("home.html", flag=True, photo_path=photo_path)
-    return render_template("generate_id.html", flag=False)
+        return render_template("home.html", flag=True, photo_path=photo_path, class_label=class_label, class_likelihood=class_likelihood, plot_data=plot_data, mytext=mytext)
+    return render_template("home.html", flag=False)
 
 # Flask route to display the stored QR code data
 @app.route('/scan_id')

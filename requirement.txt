@@ -13,3 +13,4 @@ pickle-mixin
 scipy
 tensorflow
 keras
+pyttsx3
