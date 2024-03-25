@@ -4,13 +4,13 @@ flask
 Pillow
 opencv-python
 pickle-mixin
-notebook
+notebook==6.1.5
 matplotlib
 seaborn
 plotly
-scikit-learn
+scikit-learn==1.3.2
 pickle-mixin
 scipy
-tensorflow
+tensorflow==2.15.0
 keras
 pyttsx3
